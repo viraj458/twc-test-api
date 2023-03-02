@@ -3,6 +3,9 @@ const mongoose = require("mongoose")
 const cors = require('cors')
 require('dotenv').config()
 
+const contactRoute = require('./routes/contactRoute')
+const userRoute = require('./routes/userRoute')
+
 //creating express app
 const app = express()
 
@@ -11,6 +14,9 @@ const app = express()
 app.use(cors())
 app.use(express.json())
 
+
+// routes
+app.use('/user', userRoute)
 
 port = process.env.PORT || 6000
 

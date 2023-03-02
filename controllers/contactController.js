@@ -41,3 +41,20 @@ const createContact = async(req, res) => {
         res.status(400).json({error:err.message})
     }
 }
+
+//delete a contact
+const deleteContact = async(req, res) => {
+    try {
+        const {id} = req.body
+        if(!mongoose.Types.ObjectId.isValid(id)){
+            return res.status(404).json({error:"contact not found"})
+        }
+        const contact = await Contact.findByIdAndDelete(id)
+        if(!contact){
+            return res.status(404).json({error:"contact not found"})
+        }
+        res.status(200).json(contact)
+    } catch (err) {
+        res.status(400).json({error:err.message})
+    }
+}

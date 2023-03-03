@@ -17,6 +17,7 @@ app.use(express.json())
 
 // routes
 app.use('/user', userRoute)
+app.use('/contact', contactRoute)
 
 port = process.env.PORT || 6000
 

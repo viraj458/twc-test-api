@@ -16,7 +16,7 @@ const getContacts = async(req, res) => {
 //get a contact
 const getContact = async(req, res) => {
     try {
-        const {id} = req.body
+        const {id} = req.params
         if(!mongoose.Types.ObjectId.isValid(id)){
             return res.status(404).json({error:"contact not found"})
         }
@@ -34,7 +34,8 @@ const getContact = async(req, res) => {
 //create a contact
 const createContact = async(req, res) => {
     try {
-        const {full_name,gender,email,phone_number,user_id } = req.body
+        const user_id = req.user._id
+        const {full_name,gender,email,phone_number} = req.body
         const contact = await Contact.create({full_name,gender,email,phone_number,user_id})
         res.status(200).json(contact)
     } catch (err) {
@@ -45,7 +46,7 @@ const createContact = async(req, res) => {
 //delete a contact
 const deleteContact = async(req, res) => {
     try {
-        const {id} = req.body
+        const {id} = req.params
         if(!mongoose.Types.ObjectId.isValid(id)){
             return res.status(404).json({error:"contact not found"})
         }
@@ -66,9 +67,9 @@ const updateContact = async(req, res) => {
         if(!mongoose.Types.ObjectId.isValid(id)){
             return res.status(404).json({error: "contact not found"})
         }
-        const contact = await Contact.findByIdAndUpdate({id}, {
+        const contact = await Contact.findByIdAndUpdate((id), {
             ...req.body
-        })
+        },{new:true})
         if(!contact){
             res.status(404).json({error:"contact not found"})
         }

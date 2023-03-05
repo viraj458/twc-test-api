@@ -1,6 +1,5 @@
 const express = require('express')
 const mongoose = require("mongoose")
-const cors = require('cors')
 require('dotenv').config()
 
 const contactRoute = require('./routes/contactRoute')
@@ -11,13 +10,12 @@ const app = express()
 
 
 //middleware
-app.use(cors())
 app.use(express.json())
 
 
 // routes
 app.use('/user', userRoute)
-app.use('/contact', contactRoute)
+app.use('/contacts', contactRoute)
 
 port = process.env.PORT || 6000
 

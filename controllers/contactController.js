@@ -4,8 +4,8 @@ const mongoose = require('mongoose')
 //get all contacts
 const getContacts = async(req, res) => {
     try {
-        const user_id = req.user._id
-        const contacts = await Contact.find({user_id}).sort({createdAt: -1})
+        // const user_id = req.user._id
+        const contacts = await Contact.find().sort({createdAt: -1})
 
         res.status(200).json(contacts)
     } catch (err) {
@@ -35,8 +35,8 @@ const getContact = async(req, res) => {
 const createContact = async(req, res) => {
     try {
         const user_id = req.user._id
-        const {full_name,gender,email,phone_number} = req.body
-        const contact = await Contact.create({full_name,gender,email,phone_number,user_id})
+        const {fullName,gender,email,phoneNumber} = req.body
+        const contact = await Contact.create({full_name:fullName,gender,email,phone_number:phoneNumber,user_id})
         res.status(200).json(contact)
     } catch (err) {
         res.status(400).json({error:err.message})

@@ -4,7 +4,7 @@ const mongoose = require('mongoose')
 //get all contacts
 const getContacts = async(req, res) => {
     try {
-        // const user_id = req.user._id
+        const user_id = req.user._id
         const contacts = await Contact.find().sort({createdAt: -1})
 
         res.status(200).json(contacts)

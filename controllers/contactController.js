@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const getContacts = async(req, res) => {
     try {
         const user_id = req.user._id
-        const contacts = await Contact.find().sort({createdAt: -1})
+        const contacts = await Contact.find({user_id}).sort({createdAt: -1})
 
         res.status(200).json(contacts)
     } catch (err) {

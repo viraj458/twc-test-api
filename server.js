@@ -17,7 +17,7 @@ app.use(express.json())
 app.use('/user', userRoute)
 app.use('/contacts', contactRoute)
 
-port = process.env.PORT || 6000
+port = process.env.PORT || 5461
 
 app.get("/",(req,res)=>{
     res.send("Welcome to api")

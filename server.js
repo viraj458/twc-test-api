@@ -26,7 +26,7 @@ app.get("/",(req,res)=>{
 
 //connect to MongoDB
 mongoose.set('strictQuery',false)
-mongoose.connect("mongodb+srv://admin:admin@test.rhin7xn.mongodb.net/?retryWrites=true&w=majority")
+mongoose.connect(process.env.MONGO)
     .then(()=>{
         app.listen(port,()=>{
             console.log(`Listening on port:${port}`)})

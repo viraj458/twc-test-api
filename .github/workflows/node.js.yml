@@ -28,5 +28,6 @@ jobs:
       - run: node -v
       - run: npm -v
       - run: pm2 -v
+      - run: pm2 restart twc-test-api --update-env
     env:
       CI: false

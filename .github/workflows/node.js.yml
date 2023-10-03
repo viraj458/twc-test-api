@@ -27,5 +27,6 @@ jobs:
       - run: npm run build --if-present
       - run: node -v
       - run: npm -v
+      - run: pm2 -v
     env:
       CI: false

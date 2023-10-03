@@ -30,4 +30,6 @@ jobs:
       - run: pm2 -v
       - run: pm2 restart twc-test-api --update-env
     env:
-      CI: false
+      PORT: ${{ secrets.PORT }}
+      SECRET: ${{ secrets.SECRET }}
+      MONGO: ${{ secrets.MONGO }}
